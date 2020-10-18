@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MovieItem from './movieItem';
+import { getMovie } from '../actions';
 
 const MovieList = () => {
   /* initial state count */
   const [count, setCount] = useState(0);
-
+  const [movies, setMovies] = useState([])
   /* handling count */
   const handleIncrement = () => {
     setCount(count + 1);
@@ -16,43 +17,9 @@ const MovieList = () => {
   };
   /* end handling count */
 
-  const movies = [
-    {
-      image: "http://placehold.it/700x400",
-      title: "Item One",
-      price: 33.99,
-      desc: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-             numquam aspernatur!`,
-    },
-    {
-      image: "http://placehold.it/700x400",
-      title: "Item Two",
-      price: 27.99,
-      desc: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-             numquam aspernatur!`,
-    },
-    {
-      image: "http://placehold.it/700x400",
-      title: "Item Three",
-      price: 28.99,
-      desc: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-             numquam aspernatur!`,
-    },
-    {
-      image: "http://placehold.it/700x400",
-      title: "Item Four",
-      price: 22.99,
-      desc: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-             numquam aspernatur!`,
-    },
-    {
-      image: "http://placehold.it/700x400",
-      title: "Item Five",
-      price: 64.99,
-      desc: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-             numquam aspernatur!`,
-    },
-  ];
+  useEffect(() => {
+    setMovies(getMovie())
+  })
 
   return (
     <>
